@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import CustomTagCloud from './TagCloud';
+import DescriptionModal from './DescriptionModal';
+import './App.css'; // You can also add some global styles here
 
-function App() {
+const App = () => {
+  const [tags] = useState([
+    { text: 'Tag1', description: 'This is a text description.' },
+    { text: 'Tag2', description: 'This is another text description.' },
+    { text: 'Tag3', description: 'https://example.com/image.jpg' }, // This should be a link to an image
+    // ... add more tags with descriptions
+  ]);
+
+  const [selectedTag, setSelectedTag] = useState(null);
+
+  const handleTagClick = (tag) => {
+    setSelectedTag(tag);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedTag(null);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CustomTagCloud tags={tags} onClickTag={handleTagClick} />
+      {selectedTag && (
+        <DescriptionModal
+          isOpen={!!selectedTag}
+          content={selectedTag.description}
+          onRequestClose={handleCloseModal}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,15 @@
+.tag-cloud-container {
+    width: 100%;
+    height: 400px; /* Adjust as needed */
+    border: 1px solid #ccc; /* Optional */
+    border-radius: 10px; /* Optional for rounded corners */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light grey background */
+    overflow: hidden; /* Ensures the content is contained within the borders */
+  }
+  
+  .tag-cloud {
+    width: 100%;
+    height: 100%;
+  }
+  
